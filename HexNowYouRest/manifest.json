@@ -1,0 +1,9 @@
+﻿{
+  "name": "HexNowYouRest",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/guillenjgg/valheim-hex-now-you-rest",
+  "description": "Get the Rested buff in 2 seconds instead of 20.",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.2333"
+  ]
+}
