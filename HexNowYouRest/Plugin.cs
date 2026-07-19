@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using System.Reflection;
 
 namespace HexNowYouRest
 {
@@ -9,7 +10,7 @@ namespace HexNowYouRest
     {
         private const string PluginGuid = "com.hex.nowyourest";
         private const string PluginName = "HexNowYouRest";
-        private const string PluginVersion = "1.0.0";
+        private const string PluginVersion = "1.0.1";
 
         private Harmony _harmonyInstance;
 
@@ -21,8 +22,9 @@ namespace HexNowYouRest
             Instance = this;
             Log = Logger;
 
+            Assembly assembly = Assembly.GetExecutingAssembly();
             _harmonyInstance = new Harmony(PluginGuid);
-            _harmonyInstance.PatchAll();
+            _harmonyInstance.PatchAll(assembly);
 
             Log.LogInfo($"{PluginName} v{PluginVersion} loaded.");
         }
@@ -33,8 +35,8 @@ namespace HexNowYouRest
 
             _harmonyInstance?.UnpatchSelf();
             _harmonyInstance = null;
-            Log = null;
             Instance = null;
+            Log = null;
         }
 
         [HarmonyPatch(typeof(SE_Cozy), nameof(SE_Cozy.Setup))]
